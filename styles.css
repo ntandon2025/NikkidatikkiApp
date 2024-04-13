@@ -1,0 +1,618 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    text-align: center; /* Center text for the entire body */
+}
+
+header {
+    background-color: #1a1a1a;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* ... (rest of your existing CSS for navbar, main, game, etc.) ... */
+
+footer {
+    background-color: #1a1a1a;
+    /* Footer styles here */
+}
+
+/* Starlight background styles */
+.starlight-background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #000; /* Adjust with your preferred background color */
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.starlight-background .star {
+    position: absolute;
+    border-radius: 50%;
+    background: white; /* Default color, will be overridden by JS */
+    width: 3px;
+    height: 3px;
+    opacity: 0.8;
+    animation: twinkle 2s infinite ease-in-out;
+}
+
+/* Randomly place the stars and add twinkle animation */
+@keyframes twinkle {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.5); }
+}
+.starlight-background .star {
+    /* Existing styles... */
+    animation: twinkle 0.5s infinite ease-in-out; /* Maintain your desired twinkle speed */
+}
+
+@keyframes twinkle {
+    0%, 100% { 
+        transform: scale(1); 
+        opacity: 0.8; /* Original size and opacity */
+    }
+    50% { 
+        transform: scale(1.8); /* Increased size */
+        opacity: 1; /* Brighter */
+    }}
+
+/* New keyframes for moving stars */
+@keyframes moveStar {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(10px, 10px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+.starlight-background .star {
+    /* Existing styles */
+    transition: transform 1s ease; /* Smooth transition for movement */
+}
+body {
+    font-family: 'Creepster', cursive; /* Apply the mysterious font */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    text-align: center; /* Center text horizontally */
+}
+
+.container {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: red;
+    border-radius: 8px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.disco-theme {
+    text-align: center;
+    padding: 20px;
+    background-image: linear-gradient(45deg, #ff0099, #493240, #f6d743, #00ffcc);
+    background-size: 300% 300%;
+    animation: gradientBG 15s ease infinite;
+    color: black;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+.disco-theme h1 {
+    margin: 0;
+    color: black;
+    font-size: 4em; /* Adjust size as needed */
+    font-family: 'Creepster', cursive;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+h1 {
+    font-family: 'Creepster', cursive; /* Using the Creepster font for the title */
+    text-shadow: 0 0 10px red, 0 0 20px blue, 0 0 30px #ff0099, 0 0 40px #00ff4c;
+}
+.disco-theme2 {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Ensure the header is above other content */
+    background-image: linear-gradient(45deg, #ff0099, #493240, #f3f315, #0bfcff);
+    background-size: 200% 200%;
+    animation: gradientAnimation 4s ease infinite;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.disco-theme2 h1 {
+    margin: 0;
+    color: black;
+    font-size: 4em; /* Adjust size as needed */
+    font-family: 'Creepster', cursive;
+}
+
+body {
+    padding-top: 80px; /* Adjust based on the height of your header */
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+#skipButton {
+    position: relative;
+    display: inline-block;
+}
+
+#skipButton:hover::after {
+    content: "Skipping login will create a guest account with restricted access and no leaderboard inclusion.";
+    position: absolute;
+    width: 300px; /* Adjust width as needed */
+    bottom: 100%;
+    left: 50%;
+    margin-left: -150px; /* Adjust to ensure the tooltip is centered */
+    background-color: #f9f9f9;
+    color: #000;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    z-index: 1;
+    white-space: pre-wrap; /* Ensures the text respects new lines and spaces */
+}
+
+/* Add to your styles.css */
+.error {
+    color: red;
+    font-size: 0.8em;
+    height: 18px; /* Ensures consistent spacing */
+}
+
+#continueButton {
+    background-color: red; /* Default state */
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+#continueButton.active {
+    background-color: green; /* Active/Valid state */
+}
+
+.criteria-info {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+    /* Additional styling as needed */
+}
+
+.player-icon-creation {
+    text-align: center;
+    margin: 20px;
+}
+
+.player-icon-preview {
+    /* Initial styles for hidden or empty state */
+    display: none; /* Hide until preview is clicked */
+    margin: auto;
+    text-align: center;
+    /* Add other styles as needed */
+}
+
+
+.icon-shape.circle {
+    width: 100px; /* Size of the circle */
+    height: 100px; /* Size of the circle */
+    border-radius: 50%; /* Makes it round */
+    background-color: #FFD700; /* Gold color, change as needed */
+    margin: auto;
+    position: relative; /* Needed for absolute positioning of eyes and mouth */
+}
+
+.icon-shape.square {
+    width: 100px;
+    height: 100px;
+    background-color: #00BFFF; /* Deep Sky Blue, change as needed */
+    margin: auto;
+    position: relative;
+}
+
+.icon-shape.triangle {
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent; /* Adjust size by changing width and border sizes */
+    border-right: 50px solid transparent;
+    border-bottom: 100px solid #8A2BE2; /* Blue Violet color, change as needed */
+    margin: auto;
+    position: relative;
+}
+.icon-eyes.normal {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 20px; /* Adjust based on the design */
+    left: 15px; /* Distance from left */
+    right: 15px; /* Distance from right */
+    margin: auto;
+}
+
+.icon-eyes.normal::before, .icon-eyes.normal::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 20px; /* Eye size */
+    height: 20px; /* Eye size */
+    background-color: #000; /* Eye color */
+    border-radius: 50%; /* Makes the eyes round */
+}
+
+.icon-eyes.normal::before {
+    left: 0;
+}
+
+.icon-eyes.normal::after {
+    right: 0;
+}
+
+
+.mouth {
+    position: absolute;
+    top: 60%; /* Adjust position as needed */
+    width: 100%;
+    text-align: center;
+}
+
+.icon-mouth.smile {
+    position: absolute;
+    bottom: 20px; /* Adjust based on the design */
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 60px; /* Mouth width */
+    height: 30px; /* Mouth height */
+    background-color: transparent;
+    border: 3px solid #000; /* Mouth outline color */
+    border-radius: 50px/15px; /* Adjust to make the smile curve */
+    border-top: none; /* Hides the top border */
+    transform: rotate(0deg);
+}
+
+.mouth.frown {
+    width: 50px; /* Adjust size as needed */
+    height: 20px; /* Adjust size as needed */
+    background-color: #fff;
+    border-radius: 50px 50px 0 0; /* Rounded top */
+    margin: 0 auto; /* Center the mouth */
+}
+
+.mouth.open {
+    width: 30px; /* Adjust size as needed */
+    height: 20px; /* Adjust size as needed */
+    background-color: #fff;
+    border-radius: 50%;
+    margin: 0 auto; /* Center the mouth */
+}
+
+.visible {
+    display: block;
+}
+.is-valid {
+    background-color: green;
+    color: white;
+}
+
+.is-incomplete {
+    background-color: red;
+    color: white;
+}
+
+
+
+.red {
+    background-color: red;
+    color: white;
+}
+
+.green {
+    background-color: green;
+    color: white;
+}
+
+
+.icon-preview-container {
+    border: 2px solid #ccc; /* Light grey border */
+    padding: 10px;
+    margin-top: 20px;
+    width: 200px; /* Adjust based on your needs */
+    height: 200px; /* Adjust based on your needs */
+    display: none; /* Initially hidden */
+    text-align: center;
+    margin: 20px auto; /* Center the box */
+}
+
+.player-icon-preview {
+    /* Adjust based on your needs */
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Make sure you have these if you're using id selectors instead */
+#submitButton.red { background-color: red; color: white; }
+#submitButton.green { background-color: green; color: white; }
+
+.icon-preview-container {
+    text-align: center;
+    margin-bottom: 20px; /* Space between the preview and creation box */
+    /* Additional styling as needed */
+}
+
+.player-icon-preview {
+    /* Styles for the preview area */
+    margin: auto;
+    display: none; /* Initially hidden, shown when preview button is clicked */
+}
+.back-arrow {
+    cursor: pointer;
+    font-size: 24px; /* Adjust size as needed */
+    color: #fff; /* Arrow color */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 
+                 0 0 20px rgba(255, 255, 255, 0.5), 
+                 0 0 30px rgba(255, 255, 255, 0.3), 
+                 0 0 40px #ff00de, 
+                 0 0 70px #ff00de, 
+                 0 0 80px #ff00de, 
+                 0 0 100px #ff00de;
+    margin-bottom: 20px; /* Space from the content below */
+    display: inline-block; /* To apply margin correctly */
+    user-select: none; /* Prevents text selection */
+}
+
+.back-arrow:hover {
+    color:black; /* Change color on hover for feedback */
+}
+/* Reset the default styles */
+#navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Use Flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+#navbar ul li {
+    margin: 0 10px; /* Add some space between the links */
+}
+
+#navbar ul li a {
+    display: block;
+    color: white; /* Adjust color as needed */
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+/* Hover effect */
+#navbar ul li a:hover {
+    background-color: #ddd; /* Example hover background color */
+    color: black; /* Example hover text color */
+}
+
+/* Active/Focus glow effect */
+#navbar ul li a:focus, #navbar ul li a:active {
+    outline: none; /* Remove default focus outline */
+    box-shadow: 0 0 5px #33d1ff, /* Horizontal shadow */
+                 0 0 10px #33d1ff, /* More glow */
+                 0 0 15px #33d1ff; /* Even more glow */
+    color: #33d1ff; /* Change text color on focus for visibility */
+}
+
+/* Base styles for the game grid */
+.games-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* This centers the items horizontally */
+    gap: 20px;
+    margin: 0 auto; /* Centers the grid itself */
+    max-width: 1200px; /* Adjust based on your content's optimal width */
+}
+
+/* Styles for each game block */
+.game {
+    width: calc(33% - 20px); /* Adjust based on the desired width, subtracting the gap */
+    text-align: center; /* Ensures the text is always centered below the image */
+    display: flex;
+    flex-direction: column; /* Stacks the image and text vertically */
+    align-items: center; /* Centers the items horizontally in the flex container */
+}
+
+.game a {
+    color: inherit;
+    text-decoration: none;
+    display: block; /* Makes the entire area clickable */
+}
+
+.game img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+    .game {
+        width: calc(50% - 20px); /* Larger items for better visibility on tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .game {
+        width: 100%; /* Full width on small screens for best visibility */
+    }
+}
+#under-construction-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* This makes the container take the full height of the viewport */
+    width: 100%; /* This makes the container take the full width of the viewport */
+}
+
+#under-construction-image {
+    width: 800px; /* Adjusts the width of the image to 60% of its container */
+    height: 400px; /* Keeps the image's aspect ratio intact */
+}
+
+
+
+
+
+.confirmation-box {
+    background-color: #282c34;
+    color: white;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    text-align: left;
+}
+
+.account-details p, .icon-preview p {
+    margin: 10px 0;
+}
+
+.icon-preview .icon {
+    width: 100px;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+    margin-top: 10px;
+}
+
+.confirm-btn, .footer-link a {
+    display: inline-block;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.confirm-btn:hover, .footer-link a:hover {
+    background-color: #45a049;
+}
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* This pushes the footer to the bottom */
+    min-height: 100vh;
+}
+
+.confirmation-box2 {
+    margin: auto;
+    max-width: 600px;
+    padding: 20px;
+    position: relative;
+    top: 50px; /* Adjust based on header size */
+    background: #ae259c; /* Adjust to match theme */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    color: white;
+    text-align: center;
+}
+
+
+
+#dynamicContent p {
+    color: #fff; /* Example text color */
+    margin: 20px 0;
+}
+
+#dynamicContent button {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#dynamicContent button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+
+/* Additional styles remain unchanged */
+.starlight-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
