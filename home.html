@@ -24,14 +24,13 @@
     </header>
 
     <main>
-        <div id="under-construction-container">
-            <img src="underconstruction.png" alt="Under Construction" id="under-construction-image">
+        <h2>Welcome to Maze Mirage</h2>
+        <div id="gameLinks">
+            <a href="game1.html"><img src="game1.webp" alt="Game 1"><p>Game 1</p></a>
+            <a href="game2.html"><img src="game2.webp" alt="Game 2"><p>Game 2</p></a>
         </div>
-
-        <div id="gameLinks" style="display: none;">
-            <a href="games/game1.html">Game 1</a>
-            <a href="games/game2.html">Game 2</a>
-            <a href="games/bonusGame.html">Bonus Game</a>
+        <div id="signupPrompt">
+            <p>Still don't have an account? <a href="accountcreation.html">Sign up here</a></p>
         </div>
     </main>
 
@@ -45,5 +44,44 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const starlightBackground = document.querySelector('.starlight-background');
+            const stars = 100; // Number of stars
+            const colors = ['red', 'blue', 'green', 'yellow', 'pink', 'purple', 'orange']; // Disco colors
+
+            for (let i = 0; i < stars; i++) {
+                let star = document.createElement('div');
+                star.className = 'star';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.left = Math.random() * 100 + '%';
+
+                let colorIndex = Math.floor(Math.random() * colors.length);
+                star.style.backgroundColor = colors[colorIndex];
+
+                let duration = Math.random() * (1.5 - 0.5) + 0.5; // Duration between 0.5s and 1.5s
+                star.style.animation = `twinkle ${duration}s infinite ease-in-out`;
+
+                starlightBackground.appendChild(star);
+            }
+
+            document.addEventListener("mousemove", function(e) {
+                const stars = document.querySelectorAll('.star');
+                const mouseX = e.clientX;
+                const mouseY = e.clientY;
+
+                stars.forEach(function(star, index) {
+                    const speed = index / stars.length;
+                    const x = (mouseX - window.innerWidth / 2) * speed / 100;
+                    const y = (mouseY - window.innerHeight / 2) * speed / 100;
+
+                    star.style.transform = `translate(${x}px, ${y}px)`;
+                });
+            });
+
+            // Ensure the sign-up prompt is always visible
+            document.getElementById('signupPrompt').style.display = 'block';
+        });
+    </script>
 </body>
 </html>

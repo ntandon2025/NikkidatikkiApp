@@ -650,4 +650,81 @@ body {
 }
 
 
+/* General Styles */
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Creepster', cursive;
+    overflow: hidden; /* Hide overflow caused by full-screen video */
+}
 
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(44, 62, 80, 0.9); /* Semi-transparent */
+    z-index: 1001; /* Above video and other content */
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+}
+
+#navbar ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+#navbar ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+#navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+/* Video Background */
+
+
+/* Main content styles */
+main {
+    position: relative;
+    z-index: 100;
+    padding-top: 60px; /* Space for header */
+    text-align: center;
+}
+
+#gameLinks a {
+    margin: 20px;
+}
+
+#gameLinks img {
+    width: 300px; /* Fixed width for game thumbnails */
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+#gameLinks img:hover {
+    transform: scale(1.1); /* Slight zoom on hover */
+}
+
+/* Signup Prompt */
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 20px;
+}
+#gameLinks {
+    display: flex;
+    gap: 20px;
+}
+#gameLinks a img {
+    width: 80px; /* Smaller size */
+    height: auto;
+}
