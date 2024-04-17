@@ -621,3 +621,33 @@ body {
     height: 100%;
     z-index: -1;
 }
+
+/* Container for the main content */
+.content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 150px 20px 40px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Personal info and game influence sections */
+.personal-info, .about-game {
+    background-color: #333; /* Light background for text sections */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    width: 100%;
+}
+
+.profile-photo {
+    max-width: 200px; /* Responsive image width */
+    height: auto;
+    border-radius: 50%; /* Circular image */
+    margin-bottom: 20px; /* Space between image and text */
+}
+
+
+
