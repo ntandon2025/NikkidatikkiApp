@@ -8,7 +8,7 @@ document.getElementById('usernameForm').addEventListener('submit', function(e) {
 });
 document.addEventListener("DOMContentLoaded", function() {
     const starlightBackground = document.querySelector('.starlight-background');
-    const stars = 200; // Adjust the number of stars here
+    const stars = 100; // Adjust the number of stars here
     const colors = ['red', 'blue', 'green', 'yellow', 'pink', 'purple', 'orange']; // Disco colors
 
     for (let i = 0; i < stars; i++) {
