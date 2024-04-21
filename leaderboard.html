@@ -3,19 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leaderboard  </title>
+    <title>Leaderboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    
+
+    <style>
+        .main {
+
+    padding-top: 60px; /* Adjust this value based on the height of your navbar */
+        }
+        .leaderboard-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 100px; /* Increased top padding to raise the leaderboard */
+    }
+    .leaderboard-container {
+        max-width: 90%; /* Make the leaderboard wider */
+        margin: 2em auto;
+        padding: 1em;
+        border-radius: 10px;
+        background: white;
+        box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        text-align: center;
+        font-size: 1.2em; /* Increase font size for better visibility */
+    }
+           body {
+            margin: 0;
+            font-family: 'Creepster', cursive;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+   
+        .leaderboard-container {
+            max-width: 2500px;
+            margin: 2em auto;
+            padding: 1em;
+            border-radius: 10px;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            text-align: center;
+        }
+        .leaderboard-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .leaderboard-table th,
+    .leaderboard-table td {
+        padding: 1em; /* Increase padding for larger visual spacing */
+        border-bottom: 2px solid #9b59b6;
+    }
+        .leaderboard-table th {
+            background-color: #8e44ad;
+            color: #ecf0f1;
+        }
+        .leaderboard-table td {
+            background-color: #9b59b6;
+            color: #ecf0f1;
+        }
+        .leaderboard-table img {
+            height: 30px;
+            width: 30px;
+            border-radius: 50%;
+            background-color: #ecf0f1;
+        }
+        .leaderboard-table tr:nth-child(even) td {
+            background-color: #8e44ad;
+        }
+
+        
+      
+    </style>
 </head>
 <body>
     <header class="disco-theme2">
-        <h1>Leaderboard </h1>
+        <h1>Leaderboard</h1>
         <nav id="navbar">
             <ul>
                 <li><a href="home.html">Home</a></li>
                 <li><a href="profile.html">Player Profile</a></li>
-                <li><a href="leaderboard.html">Leaderboard</a></li>
+                <li><a href="leaderboard.html" class="active">Leaderboard</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="games.html">Games</a></li>
                 <li><a href="collaboration.html">Collaboration</a></li>
@@ -23,6 +91,36 @@
             </ul>
         </nav>
     </header>
+
+    <main>
+        <!-- Leaderboard Section -->
+        <section class="leaderboard-section">
+            <div class="leaderboard-container">
+                <!-- This table will hold the leaderboard data -->
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Gamertag</th>
+                            <th>Icon</th>
+                            <th> Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Leaderboard entries will be inserted here -->
+                        <!-- Static example entry -->
+                        <tr>
+                            <td>1</td>
+                            <td>PlayerOne</td>
+                            <td><img src="playericon.png" alt="Player Icon" /></td>
+                            <td>00:02:34</td>
+                        </tr>
+                        <!-- Repeat the above row for each entry -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
   
 
     <div class="starlight-background">
