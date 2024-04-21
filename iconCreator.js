@@ -1,20 +1,31 @@
-function selectIcon(selectedImage) {
-    // Remove 'selected' class from all images
-    document.querySelectorAll('.profile-icon').forEach(icon => {
-        icon.classList.remove('selected');
+document.addEventListener("DOMContentLoaded", function() {
+    // Get all icons and the submit button from the page
+    const icons = document.querySelectorAll('.profile-icon');
+    const submitButton = document.getElementById('submitButton');
+
+    // Initially disable the submit button
+    submitButton.disabled = true;
+
+    // Function to handle icon click events
+    icons.forEach(icon => {
+        icon.onclick = function() {
+            // Remove 'selected' class from all icons
+            icons.forEach(img => img.classList.remove('selected'));
+            // Add 'selected' class to clicked icon
+            this.classList.add('selected');
+            // Enable and update the submit button
+            submitButton.disabled = false;
+            submitButton.classList.remove('red');
+            submitButton.classList.add('green');
+        };
     });
 
-    // Add 'selected' class to clicked image
-    selectedImage.classList.add('selected');
-
-    // Enable and change color of the submit button
-    const submitButton = document.getElementById('submitButton');
-    submitButton.classList.add('green');
-    submitButton.disabled = false; // Enable the button
-
-    // Prepare button to submit
+    // Setup submit button click event
     submitButton.onclick = function() {
-        alert("You have selected " + selectedImage.alt + " as your profile icon.");
-        window.location.href = 'account-confirmation.html'; // Redirect URL
+        if (!this.disabled) {
+            const selectedIcon = document.querySelector('.profile-icon.selected');
+            alert("You have selected " + selectedIcon.alt + " as your profile icon.");
+            window.location.href = 'accountconfirmationpage.html'; // Change to your desired URL
+        }
     };
-}
+});
