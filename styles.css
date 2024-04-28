@@ -629,4 +629,107 @@ main {
 }
 
 
+/* Profile page css*/
 
+/* General body styling */body {
+    font-family: 'Creepster', cursive; /* You can change this if needed */
+    background-color: #282a36;
+    color: #f8f8f2;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Changes to column for vertical stacking */
+    justify-content: center; /* Centering vertically */
+    align-items: center;
+    min-height: 100vh; /* Ensures the viewport height is fully utilized */
+    padding-top: 50px; /* Add padding to top to ensure visibility below nav */
+}
+
+header {
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    background-color: #44475a;
+    color: #ffffff;
+    position: fixed; /* Make header fixed */
+    top: 0; /* Align header at the top */
+    left: 0; /* Align header to the left edge */
+    right: 0; /* Align header to the right edge */
+    z-index: 1000; /* Ensures the header stays on top of other content */
+}
+
+nav ul {
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+    margin-right: 10px;
+}
+
+/* Main section styling for profile details */
+#profile-section {
+    background-color: #6272a4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 50%;
+    max-width: 600px;
+    margin-top: 60px; /* Additional top margin to clear fixed header */
+}
+
+#profile-icon {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    margin-bottom: 20px;
+}
+
+h2, p {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+/* Password container styling */
+#password-container {
+    margin-top: 20px;
+}
+
+input[type="password"], input[type="text"] {
+    font-size: 1.2em;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    width: calc(100% - 22px);
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1.2em;
+    background-color: #50fa7b;
+    color: #282a36;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+footer {
+    padding: 10px 0;
+    width: 100%;
+    text-align: center;
+    background-color: #44475a;
+    color: #ffffff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.back-arrow {
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 10px;
+}
