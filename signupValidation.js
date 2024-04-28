@@ -1,87 +1,99 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const gamertag = document.getElementById('gamertag');
-    const password = document.getElementById('password');
-    const confirmPassword = document.getElementById('confirmPassword');
-    const continueButton = document.getElementById('continueButton');
 
-    const gamertagError = document.getElementById('gamertagError');
-    const passwordError = document.getElementById('passwordError');
-    const confirmPasswordError = document.getElementById('confirmPasswordError');
-
-    function validateGamertag() {
-        const regex = /^[A-Za-z\d]{5,12}$/;
-        const hasThreeNumbers = /\d{3,}/.test(gamertag.value);
-        if (!regex.test(gamertag.value) || !hasThreeNumbers) {
-            gamertagError.textContent = "Gamertag must be 5-12 characters including 3 numbers.";
-            return false;
-        } else {
-            gamertagError.textContent = "";
-            return true;
+    document.addEventListener("DOMContentLoaded", function() {
+        const gamertag = document.getElementById('gamertag');
+        const password = document.getElementById('password');
+        const confirmPassword = document.getElementById('confirmPassword');
+        const signupForm = document.getElementById('signupForm');
+        const showCriteriaButton = document.getElementById('showCriteriaButton');
+        const criteriaInfo = document.getElementById('criteriaInfo');
+    
+        // Validation functions
+        function validateGamertag() {
+            const regex = /^[A-Za-z\d]{5,12}$/;
+            const hasThreeNumbers = /\d{3,}/.test(gamertag.value);
+            gamertagError.textContent = !regex.test(gamertag.value) || !hasThreeNumbers
+                ? "Gamertag must be 5-12 characters including 3 numbers."
+                : "";
+            return regex.test(gamertag.value) && hasThreeNumbers;
         }
-    }
-
-    function validatePassword() {
-        const regex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{5,12}$/;
-        if (!regex.test(password.value)) {
-            passwordError.textContent = "Password must be 5-12 characters with at least 1 uppercase letter and 1 number.";
-            return false;
-        } else {
-            passwordError.textContent = "";
-            return true;
+    
+        function validatePassword() {
+            const regex = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{5,12}$/;
+            passwordError.textContent = !regex.test(password.value)
+                ? "Password must be 5-12 characters with at least 1 uppercase letter and 1 number."
+                : "";
+            return regex.test(password.value);
         }
-    }
-
-    function validateConfirmPassword() {
-        if (password.value !== confirmPassword.value) {
-            confirmPasswordError.textContent = "Passwords do not match.";
-            return false;
-        } else {
-            confirmPasswordError.textContent = "";
-            return true;
+    
+        function validateConfirmPassword() {
+            confirmPasswordError.textContent = password.value !== confirmPassword.value
+                ? "Passwords do not match."
+                : "";
+            return password.value === confirmPassword.value;
         }
-    }
-
-    function updateContinueButtonState() {
-        if (validateGamertag() && validatePassword() && validateConfirmPassword()) {
-            continueButton.classList.add('active');
-        } else {
-            continueButton.classList.remove('active');
+    
+        // Update UI error messages
+        function updateErrorMessages() {
+            validateGamertag();
+            validatePassword();
+            validateConfirmPassword();
         }
-    }
-
-    gamertag.addEventListener('input', updateContinueButtonState);
-    password.addEventListener('input', updateContinueButtonState);
-    confirmPassword.addEventListener('input', updateContinueButtonState);
-});
-document.addEventListener("DOMContentLoaded", function() {
-    const showCriteriaButton = document.getElementById('showCriteriaButton');
-    const criteriaInfo = document.getElementById('criteriaInfo');
-
-    showCriteriaButton.addEventListener('click', function() {
-        if (criteriaInfo.style.display === "none" || !criteriaInfo.style.display) {
-            criteriaInfo.style.display = "block";
-            showCriteriaButton.textContent = "Hide Criteria";
-        } else {
-            criteriaInfo.style.display = "none";
-            showCriteriaButton.textContent = "Show Criteria";
-        }
+    
+        // Event listeners for real-time validation
+        gamertag.addEventListener('input', validateGamertag);
+        password.addEventListener('input', validatePassword);
+        confirmPassword.addEventListener('input', validateConfirmPassword);
+    
+        // Toggle password criteria information
+        showCriteriaButton.addEventListener('click', function() {
+            if (criteriaInfo.style.display === "none" || !criteriaInfo.style.display) {
+                criteriaInfo.style.display = "block";
+                showCriteriaButton.textContent = "Hide Criteria";
+            } else {
+                criteriaInfo.style.display = "none";
+                showCriteriaButton.textContent = "Show Criteria";
+            }
+        });
+    
+        // Form submission
+        signupForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Validate all fields
+            const isGamertagValid = validateGamertag();
+            const isPasswordValid = validatePassword();
+            const isConfirmPasswordValid = validateConfirmPassword();
+    
+            // Check if all validations are true
+            if (isGamertagValid && isPasswordValid && isConfirmPasswordValid) {
+                // Data is valid, proceed to submit the form
+                fetch('/.netlify/functions/create-account', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        gamertag: gamertag.value,
+                        password: password.value // Make sure to hash passwords in the function
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Success:', data);
+                    // Redirect to another page or show a success message
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            } else {
+                // Data is not valid, do not submit the form
+                // Error messages would already be visible from the validation functions
+                console.error('Validation failed.');
+            }
+        });
     });
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    const continueButton = document.getElementById('continueButton');
-
-    continueButton.addEventListener('click', function() {
-        // Check if the button is in the active (green) state
-        if (continueButton.classList.contains('active')) {
-            // Redirect to the player icon creation page
-            window.location.href = 'iconcreationpage.html';
-        } else {
-            // Optionally alert the user to correct the form
-            alert('Please ensure all criteria are met before continuing.');
-        }
-    });
-});
-document.getElementById('skipButton').addEventListener('click', function() {
-    window.location.href = 'home.html'; // Direct to the home page 
-});
+    
