@@ -53,6 +53,11 @@
                         <textarea id="gameplay_experience" name="gameplay_experience" placeholder="Gameplay Experience" required class="form-control"></textarea>
                     </div>
                     <button type="submit" class="submit-button">Submit Feedback</button>
+
+                    <div id="feedback-message" style="display: none;"> <!-- Hidden by default -->
+                        <p>Thank you for your feedback!</p>
+                    </div>
+                    
                 </form>
             </div>
         </div>
@@ -114,7 +119,39 @@
         });
     });
 });
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById('feedbackForm');
+    form.onsubmit = function(e) {
+        e.preventDefault(); // Prevent default form submission
+        const formData = new FormData(form);
 
+        fetch('submit-feedback.php', {
+            method: 'POST',
+            body: formData,
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                displayFeedbackMessage(data.message, true);
+            } else {
+                displayFeedbackMessage(data.message, false);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    };
+
+    function displayFeedbackMessage(message, isSuccess) {
+        const messageBox = document.getElementById('feedback-message');
+        messageBox.style.display = 'block';
+        messageBox.innerHTML = `<p>${message}</p>`;
+        messageBox.style.color = isSuccess ? 'green' : 'red'; // Change text color based on success or error
+
+        // Optionally, hide the message after some time
+        setTimeout(() => {
+            messageBox.style.display = 'none';
+        }, 5000); // 5000 milliseconds = 5 seconds
+    }
+});
          
     </script>
     

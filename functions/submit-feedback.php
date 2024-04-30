@@ -1,4 +1,5 @@
 <?php
+// Database configuration
 $servername = "localhost";
 $username = "root";
 $password = "Nik25hil!!!";
@@ -11,10 +12,11 @@ $conn = new mysqli($servername, $username, $password, $database);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-?>
-<?php
+
+header('Content-Type: application/json'); // Specify the type of response expected
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Collect and sanitize input data
+    // Collect input data
     $name = $conn->real_escape_string($_POST['name']);
     $email = $conn->real_escape_string($_POST['email']);
     $feature_requests = $conn->real_escape_string($_POST['feature_requests']);
@@ -23,16 +25,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $website_usability = $conn->real_escape_string($_POST['website_usability']);
     $gameplay_experience = $conn->real_escape_string($_POST['gameplay_experience']);
 
-    // SQL to insert data
-    $sql = "INSERT INTO user_feedback (name, email, feature_requests, general_comments, bug_reports, website_usability, gameplay_experience, created_at)
-    VALUES ('$name', '$email', '$feature_requests', '$general_comments', '$bug_reports', '$website_usability', '$gameplay_experience', NOW())";
+    // Prepare an SQL statement to avoid SQL injection
+    $stmt = $conn->prepare("INSERT INTO user_feedback (name, email, feature_requests, general_comments, bug_reports, website_usability, gameplay_experience, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, NOW())");
+    $stmt->bind_param("sssssss", $name, $email, $feature_requests, $general_comments, $bug_reports, $website_usability, $gameplay_experience);
 
-    if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+    // Execute the statement and check for success
+    if ($stmt->execute()) {
+        echo json_encode(['status' => 'success', 'message' => 'Thank you for your feedback!']);
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        echo json_encode(['status' => 'error', 'message' => 'An error occurred. Please try again later.']);
     }
-}
-$conn->close();
-?>
 
+    // Close statement and connection
+    $stmt->close();
+    $conn->close();
+} else {
+    // Not a POST request
+    echo json_encode(['status' => 'error', 'message' => 'Invalid request type.']);
+}
+?>
