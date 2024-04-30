@@ -7,7 +7,7 @@
         const showCriteriaButton = document.getElementById('showCriteriaButton');
         const criteriaInfo = document.getElementById('criteriaInfo');
     
-        // Validation functions
+        // Validation functions ( make tthe the creation date and last login in to a string and then convert to how i need it )
         function validateGamertag() {
             const regex = /^[A-Za-z\d]{5,12}$/;
             const hasThreeNumbers = /\d{3,}/.test(gamertag.value);
