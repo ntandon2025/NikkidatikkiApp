@@ -5,12 +5,30 @@ body, html {
     font-family: Arial, sans-serif;
 }
 
+#header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px;
+    background-color: #f4f4f4;
+}
+
+#header img {
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+}
+
+h1 {
+    text-align: center;
+}
+
 #gameContainer {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     flex-direction: column;
+    margin-top: 20px;
 }
 
 #maze {
@@ -32,18 +50,45 @@ body, html {
     background-color: #333;
 }
 
-.start {
-    background-color: green;
+.start, .end, .player, .obstacle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.end {
-    background-color: red;
+.start { background-color: green; }
+.end { background-color: red; }
+.player { background-color: blue; }
+.obstacle { background-color: yellow; } /* Different color for obstacles */
+
+button {
+    margin: 5px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-.player {
-    background-color: blue;
+.starlight-background {
+    position: fixed; /* Or absolute, depending on your layout */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Keeps the background behind other content */
+    overflow: hidden; /* Keeps stars within bounds */
 }
 
-#panel {
-    margin-top: 20px;
+.star {
+    position: absolute;
+    width: 5px; /* Adjust size as needed */
+    height: 5px; /* Adjust size as needed */
+    border-radius: 50%; /* Makes the stars circular */
+    animation: twinkle 1s infinite alternate; /* Default animation, can be overridden in JS */
+}
+
+/* Keyframes for twinkling effect */
+@keyframes twinkle {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
 }
