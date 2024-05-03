@@ -1,30 +1,32 @@
+
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <header class="disco-theme2">
-            <h1>Maze Mirage</h1>
-        </header>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Account Creation</title>
-        <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="styles.css">
-    </head>
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Creation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
 <body>
-    
+    <header class="disco-theme2">
+        <h1>Maze Mirage</h1>
+    </header>
+
     <div class="signup-container disco-theme">
         <h2>Please Enter a GamerTag and Password</h2>
-        <form id="signupForm">
+        <form id="signupForm" class="form-group">
             <input type="text" id="gamertag" name="gamertag" placeholder="GamerTag" required>
             <div id="gamertagError" class="error"></div>
             
-            <input type="password" id="password" name="password" placeholder="Password" required>
+            <div class="password-container">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+                <button type="button" id="togglePassword" class="toggle-password">Show</button>
+            </div>
             <div id="passwordError" class="error"></div>
-            
-            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
             <div id="confirmPasswordError" class="error"></div>
-            
+
             <div class="criteria-popup" id="criteriaInfo" style="display: none;">
                 <p>(1) Gamertag Criteria: 5-12 characters including 3 numbers.</p>
                 <p>(2) Password Criteria: 5-12 characters with at least 1 uppercase letter and 1 number.</p>
@@ -32,19 +34,15 @@
             </div>
             
             <button type="button" id="showCriteriaButton">Show Criteria</button>
-            
             <button type="submit" id="continueButton">Continue</button>
-            <br></br>
+            <br><br>
 
-                    <div class="back-arrow" onclick="window.history.back();">← Go Back</div>
-
+            <div class="back-arrow" onclick="window.history.back();">← Go Back</div>
         </form>
-
-
     </div>
-    
 
     <script src="signupValidation.js"></script>
+
     
 
     <div class="starlight-background">
