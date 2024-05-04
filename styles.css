@@ -1,11 +1,4 @@
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #121212;
-    color: #fff;
-    margin: 0;
-    padding: 0;
-    text-align: center; /* Center text for the entire body */
-}
+
 
 header {
     background-color: #1a1a1a;
@@ -495,12 +488,7 @@ icon-gallery {
 }
 
 
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* This pushes the footer to the bottom */
-    min-height: 100vh;
-}
+
 
 .confirmation-box2 {
     margin: auto;
@@ -562,7 +550,10 @@ body {
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    box-shadow: 0 0 10px rgba(204, 80, 177, 0.5);
+    background-image: linear-gradient(45deg, #ff0099, #000000, #0bfcff);
+    background-size: 200% 200%;
+    animation: gradientAnimation 4s ease infinite;    padding: 90px;
     width: 100%;
 }
 
@@ -574,25 +565,6 @@ body {
 }
 
 
-/* General Styles */
-body, html {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    font-family: 'Creepster', cursive;
-    overflow: hidden; /* Hide overflow caused by full-screen video */
-}
-
-header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    background: rgba(44, 62, 80, 0.9); /* Semi-transparent */
-    z-index: 1001; /* Above video and other content */
-    padding: 10px 0;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
-}
 
 #navbar ul {
     list-style-type: none;
@@ -808,4 +780,67 @@ footer {
 .confirmed-icon {
     border: 4px solid green;
     padding: 2px;  
+}
+
+
+
+
+
+
+/*Profile page  */
+main {
+    display: flex;
+    justify-content: space-around;
+    width: 80%; /* Control width to prevent stretching on very wide screens */
+    margin-top: 10px; /* Increases top margin to add space below the nav bar */
+    margin-bottom: 100px; /* Optional: adds bottom margin for spacing above footer */
+    flex-wrap: wrap; /* Allows child elements to wrap on smaller screens */
+    align-items: center; /* Vertically aligns the child elements in case they wrap */
+}
+
+.playerleft-column, .playerright-column {
+    box-shadow: 0 0 10px rgba(204, 80, 177, 0.5);
+    background-image: linear-gradient(45deg, #ff0099, #493240, #0bfcff);
+    background-size: 200% 200%;
+    animation: gradientAnimation 4s ease infinite;
+    padding: 100px;
+    border-radius: 20px;
+    margin: 55px;
+    display: flex;
+    flex-direction: column; /* Stack children vertically */
+    align-items: center; /* Center-align the flex children */
+    justify-content: center; /* Center content vertically */
+    font-size: 1.3em; /* Slightly larger text within player columns */
+
+}
+
+.pprofile-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: block;
+    margin-bottom: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+@media (max-width: 800px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .playerleft-column, .playerright-column {
+        width: 100%;
+        
+    }
 }

@@ -24,3 +24,13 @@ document.addEventListener("DOMContentLoaded", function() {
         starlightBackground.appendChild(star);
     }
 });
+function togglePasswordVisibility() {
+    var passwordInput = document.getElementById('password');
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        event.target.textContent = 'Hide';
+    } else {
+        passwordInput.type = 'password';
+        event.target.textContent = 'Show';
+    }
+}

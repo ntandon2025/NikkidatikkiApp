@@ -3,49 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Player Profile  </title>
+    <title>Player Profile</title>
     <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="disco-theme2">
-        <h1>Player Profile </h1>
-        <a href="index.html"><img src="smile.png" alt="Back to Home" class="back-button"></a>
-
+    <header class="disco-theme">
+        <h1>Player Profile</h1>
         <nav id="navbar">
             <ul>
                 <li><a href="home.html">Home</a></li>
-                <li><a href="profile.html">Player Profile</a></li>
                 <li><a href="leaderboard.html">Leaderboard</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="collaboration.html">Collaboration</a></li>
                 <li><a href="feedback.html">Feedback</a></li>
             </ul>
         </nav>
     </header>
-
     <main>
-        <section id="profile-section">
-            <img src="discoball.png" alt="Profile Icon" id="profile-icon">
-            <h2 id="gamer-tag">Gamer Tag</h2>
-            <p id="games-played">Games Played: <span>123</span></p>
-            <p id="score">Score: <span>45678</span></p>
-
+        <div class="playerleft-column">
+            <img src="discobear.png" alt="Profile Icon" class="pprofile-icon">
+            <h2>Gamer Tag: PlayerOne</h2>
             <div id="password-container">
-                <label for="password">Password:</label>
-                <input type="password" id="password" value="yourpassword" readonly>
+                <label>Password:</label>
+                <input type="password" id="password" value="password123" readonly>
                 <button onclick="togglePasswordVisibility()">Show</button>
             </div>
-        </section>
-        <section id="game-history">
+            <p>Account Created: Jan 1, 2024</p>
+            <p>Last Logged In: April 5, 2024</p>
+        </div>
+        <div class="playerright-column">
             <h2>Game History</h2>
-            <ul>
-                <li><strong>Game 1</strong> - Attempts: 5, Time: 1h 30m</li>
-                <li><strong>Game 2</strong> - Attempts: 3, Time: 45m</li>
-                <li><strong>Game 3</strong> - Attempts: 7, Time: 2h 15m</li>
-                <!-- More games can be listed here -->
-            </ul>
-        </section>
+            <p>Game 1 - Attempts: 5, Rank: #2, Time: 1h 30m</p>
+            <p>Game 2 - Attempts: 3, Rank: #1, Time: 45m</p>
+        </div>
     </main>
   
     <div class="starlight-background">
