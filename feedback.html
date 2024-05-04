@@ -6,7 +6,50 @@
     <title>User Feedback of Maze Mirage Experience </title>
     <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    
+    <style>
+body {
+    margin: 0;
+    font-family: 'Creepster', cursive;
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+.feedback-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px; /* Adjust as needed */
+    margin-top: -20px; /* Adjust to bring it closer to the navigation bar */
+}
+
+.feedback-container {
+    max-width: 90%;
+    margin: 1em auto;
+    padding: 1em;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    text-align: center;
+    font-size: 2.2em;
+    background-image: linear-gradient(45deg, #ff0099, #493240, #0bfcff);
+    background-size: 200% 200%;
+    animation: gradientAnimation 4s ease infinite;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    width: 100%; /* Set the width to 100% */
+    padding: 10px; /* Add padding for better appearance */
+    border: 1px solid #ccc; /* Add a border for clarity */
+    border-radius: 5px; /* Add border radius for rounded corners */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+}
+
+</style>
+
 </head>
 <body>
     <header class="disco-theme2">
@@ -26,7 +69,7 @@
     </header>
 
  
-    <section id="feedback-section" class="disco-theme">
+    <section id="feedback-section" >
        
             <div class="feedback-container">
                 <h2 class="section-heading">Share Your Feedback</h2>
@@ -55,9 +98,10 @@
                     </div>
                     <button type="submit" class="submit-button">Submit Feedback</button>
 
-                    <div id="feedback-message" style="display: none;"> <!-- Hidden by default -->
-                        <p>Thank you for your feedback!</p>
+                    <div id="thank-you-message" style="display: none;">
+                        <p>Thank you for your feedback! Our development team will review it.</p>
                     </div>
+                    
                     
                 </form>
             </div>
