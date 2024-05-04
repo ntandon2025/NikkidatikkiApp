@@ -10,72 +10,59 @@
     <link rel="stylesheet" href="styles.css">
 
     <style>
-        .main {
-
-    padding-top: 60px; /* Adjust this value based on the height of your navbar */
-        }
-        .leaderboard-section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding-top: 100px; /* Increased top padding to raise the leaderboard */
-    }
-    .leaderboard-container {
-        max-width: 90%; /* Make the leaderboard wider */
-        margin: 2em auto;
-        padding: 1em;
-        border-radius: 10px;
-        background: white;
-        box-shadow: 0 0 20px rgba(0,0,0,0.5);
-        text-align: center;
-        font-size: 1.2em; /* Increase font size for better visibility */
-    }
-           body {
+        body {
             margin: 0;
+            padding: 0;
             font-family: 'Creepster', cursive;
             background: #000;
             color: #fff;
             overflow-x: hidden;
         }
-   
+
+        .leaderboard-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 1px; /* Reduced from a larger value to bring it closer */
+            margin-top: -300px; /* Adjusted to bring the leaderboard closer to the navigation bar */
+        }
+
         .leaderboard-container {
-            max-width: 2500px;
-            margin: 2em auto;
+            max-width: 90%;
+            margin: 1em auto; /* Adjusted to unify styling */
             padding: 1em;
             border-radius: 10px;
             background: white;
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
             text-align: center;
+            font-size: 1.8em;
+            background-image: linear-gradient(45deg, #ff0099, #493240, #0bfcff);
+            background-size: 200% 200%;
+            animation: gradientAnimation 4s ease infinite;
         }
+
         .leaderboard-table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    .leaderboard-table th,
-    .leaderboard-table td {
-        padding: 1em; /* Increase padding for larger visual spacing */
-        border-bottom: 2px solid #9b59b6;
-    }
-        .leaderboard-table th {
-            background-color: #8e44ad;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .leaderboard-table th, .leaderboard-table td {
+            padding: 1em;
+            border-bottom: 2px solid #000000;
+            background-color: #000000;
             color: #ecf0f1;
         }
-        .leaderboard-table td {
-            background-color: #9b59b6;
-            color: #ecf0f1;
-        }
+
         .leaderboard-table img {
             height: 30px;
             width: 30px;
             border-radius: 50%;
             background-color: #ecf0f1;
         }
-        .leaderboard-table tr:nth-child(even) td {
-            background-color: #8e44ad;
-        }
 
-        
-      
+        .leaderboard-table tr:nth-child(even) td {
+            background-color: #000000;
+        }
     </style>
 </head>
 <body>
