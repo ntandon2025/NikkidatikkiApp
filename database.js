@@ -8,9 +8,11 @@ const connection = mysql.createConnection({
   database: 'mazemirage_db'
 });
 
-// Open the MySQL connection
-connection.connect(error => {
-  if (error) throw error;
-  console.log("Successfully connected to the database.");
-});
 
+connection.connect(err => {
+    if (err) {
+        console.error('Error connecting: ' + err.stack);
+        return;
+    }
+    console.log('Connected as id ' + connection.threadId);
+});
