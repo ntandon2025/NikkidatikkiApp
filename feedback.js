@@ -4,7 +4,8 @@ document.addEventListener("DOMContentLoaded", function() {
         e.preventDefault(); // Prevent default form submission
         const formData = new FormData(form);
 
-        fetch('submit-feedback.php', {
+        // Change the fetch URL to your Node.js endpoint on Heroku
+        fetch('https://your-heroku-app-url.com/submit-feedback', {
             method: 'POST',
             body: formData,
         })
