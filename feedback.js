@@ -1,24 +1,28 @@
 document.addEventListener("DOMContentLoaded", function() {
     const form = document.getElementById('feedbackForm');
-    form.onsubmit = function(e) {
-        e.preventDefault(); // Prevent default form submission
-        const formData = new FormData(form);
+    if (form) {
+        form.onsubmit = function(e) {
+            e.preventDefault(); // Prevent default form submission
+            const formData = new FormData(form);
 
-        // Change the fetch URL to your Node.js endpoint on Heroku
-        fetch('https://your-heroku-app-url.com/submit-feedback', {
-            method: 'POST',
-            body: formData,
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                displayFeedbackMessage(data.message, true);
-            } else {
-                displayFeedbackMessage(data.message, false);
-            }
-        })
-        .catch(error => console.error('Error:', error));
-    };
+            fetch('https://your-heroku-app-url.com/submit-feedback', {
+                method: 'POST',
+                body: formData,
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    displayFeedbackMessage(data.message, true);
+                } else {
+                    displayFeedbackMessage(data.message, false);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        };
+    } else {
+        console.error('Form not found');
+    }
+});
 
     function displayFeedbackMessage(message, isSuccess) {
         const messageBox = document.getElementById('feedback-message');
@@ -36,4 +40,3 @@ document.addEventListener("DOMContentLoaded", function() {
             thankYouMessage.style.display = 'none';
         }, 5000); // 5000 milliseconds = 5 seconds
     }
-});
