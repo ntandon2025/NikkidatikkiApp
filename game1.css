@@ -40,11 +40,12 @@ body, html {
   position: relative; /* Necessary for z-index */
   width: 65%; /* Adjust width as necessary */
   margin: auto; /* Center the container if less than full width */
+
 }
 
 
 canvas {
-  border: 2px solid #fff;  /* Makes the canvas stand out more */
+  border: 1px solid #fff;  /* Makes the canvas stand out more */
   z-index: 2;  /* Ensures canvas is on top within the game container */
 }
 .profilePic {
@@ -53,17 +54,25 @@ canvas {
   border-radius: 50%; /* Makes the profile picture circular */
 }
 
+.controls {
+  text-align: center; /* Center-align the button texts */
+  padding: 10px 0; /* Padding for spacing above and below the buttons */
+  width: 100%; /* Full width to center align below the game container */
+  box-sizing: border-box; /* Include padding and border in the width */
+}
 .controls button {
-  margin: 5px;
-  padding: 10px;
+  margin: 0 10px; /* Spacing between buttons */
+  padding: 10px 20px; /* Padding inside buttons */
   color: #fff;
   background-color: #333;
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s; /* Smooth transition for hover effect */
 }
 
 .controls button:hover {
-  background-color: #555;
+  background-color: #555; /* Hover effect */
+  
 }
 
 .starlight-background {
