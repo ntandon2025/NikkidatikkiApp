@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const feedbackRoutes = require('./feedbackRoutes'); // Make sure the path matches your folder structure
+const feedbackRoutes = require('./routes/feedbackRoutes'); // Make sure the path matches your folder structure
 
 const app = express();
 
