@@ -73,7 +73,7 @@ body {
        
             <div class="feedback-container">
                 <h2 class="section-heading">Share Your Feedback</h2>
-                <form id="feedbackForm" action="submit-feedback.php" method="post" class="feedback-form">
+                <form id="feedbackForm"   class="feedback-form">
                     <!-- Form inputs go here... -->
                     <div class="form-group">
                         <input type="text" id="name" name="name" placeholder="Your Name" required class="form-control">
@@ -163,39 +163,8 @@ body {
             star.style.transform = `translate(${x}px, ${y}px)`;
         });
     });
-});
-document.addEventListener("DOMContentLoaded", function() {
-    const form = document.getElementById('feedbackForm');
-    form.onsubmit = function(e) {
-        e.preventDefault(); // Prevent default form submission
-        const formData = new FormData(form);
 
-        fetch('submit-feedback.php', {
-            method: 'POST',
-            body: formData,
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
-                displayFeedbackMessage(data.message, true);
-            } else {
-                displayFeedbackMessage(data.message, false);
-            }
-        })
-        .catch(error => console.error('Error:', error));
-    };
 
-    function displayFeedbackMessage(message, isSuccess) {
-        const messageBox = document.getElementById('feedback-message');
-        messageBox.style.display = 'block';
-        messageBox.innerHTML = `<p>${message}</p>`;
-        messageBox.style.color = isSuccess ? 'green' : 'red'; // Change text color based on success or error
-
-        // Optionally, hide the message after some time
-        setTimeout(() => {
-            messageBox.style.display = 'none';
-        }, 5000); // 5000 milliseconds = 5 seconds
-    }
 });
          
     </script>

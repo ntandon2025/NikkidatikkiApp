@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const form = document.getElementById('feedbackForm');
     if (!form) {
-        console.error("Form not found on the page.");
+        console.error("Feedback form not found on the page.");
         return;
     }
 
@@ -9,22 +9,29 @@ document.addEventListener("DOMContentLoaded", function() {
         e.preventDefault();
         const formData = new FormData(form);
 
-        fetch('https://mazemirage-8df3b36e748f.herokuapp.com/submit-feedback', {
+        // Optional: Log the FormData values for debugging
+        for (let [key, value] of formData.entries()) {
+            console.log(`${key}: ${value}`);
+        }
+
+        // Specify your Heroku backend endpoint
+        const endpoint = 'https://mazemirage-8df3b36e748f.herokuapp.com/submit-feedback';
+
+        fetch(endpoint, {
             method: 'POST',
             body: formData
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
+                throw new Error('Network response was not ok: ' + response.statusText);
             }
             return response.json();
         })
         .then(data => {
-            console.log("Server response:", data);
             displayFeedbackMessage(data.message, data.status === 'success');
         })
         .catch(error => {
-            console.error('Submission error:', error);
+            console.error('Error:', error);
             displayFeedbackMessage("Failed to submit feedback. Please try again.", false);
         });
     });
@@ -32,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function displayFeedbackMessage(message, isSuccess) {
         const messageBox = document.getElementById('thank-you-message');
         if (!messageBox) {
-            console.error("Thank you message box not found.");
+            console.error("Message box element not found on the page.");
             return;
         }
         messageBox.innerHTML = `<p>${message}</p>`;
@@ -41,6 +48,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
         setTimeout(() => {
             messageBox.style.display = 'none';
-        }, 5000); // Optionally hide the message after 5 seconds
+        }, 5000); // Hide message after 5 seconds
     }
 });

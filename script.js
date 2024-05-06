@@ -1,11 +1,4 @@
-document.getElementById('usernameForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    var username = document.getElementById('username').value;
-    if(username) {
-        document.getElementById('gameLinks').style.display = 'block';
-        // You can also do more with the username, like storing it for later use
-    }
-});
+
 document.addEventListener("DOMContentLoaded", function() {
     const starlightBackground = document.querySelector('.starlight-background');
     const stars = 100; // Adjust the number of stars here
