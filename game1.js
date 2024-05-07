@@ -315,7 +315,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 document.getElementById('instructionsBtn').addEventListener('click', function() {
-    alert("Move your mouse to navigate the maze. Avoid walls and reach the end!");
+    alert("Move your mouse to navigate the maze. Avoid the avoiders and reach the end!");
 });
 
 document.getElementById('homeBtn').addEventListener('click', function() {
