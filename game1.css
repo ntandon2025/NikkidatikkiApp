@@ -24,6 +24,7 @@ body, html {
   align-items: center;
   padding: 10px;
   background-color: #060606;
+  
   color: white;
 }
 
@@ -31,7 +32,7 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: 80vh;
   background-color: #000; /* Set the background to black */
   border: 10px solid transparent; /* Specify the border width and make it transparent initially */
   border-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet) 1; /* Apply a linear gradient as the border */
@@ -52,6 +53,7 @@ canvas {
   width: 50px;
   height: 50px;
   border-radius: 50%; /* Makes the profile picture circular */
+  
 }
 
 .controls {
@@ -62,11 +64,10 @@ canvas {
 }
 .controls button {
   margin: 0 10px; /* Spacing between buttons */
-  padding: 10px 20px; /* Padding inside buttons */
+  padding: 5px 10px; /* Smaller padding for smaller screens */
   color: #fff;
   background-color: #333;
-  border: none;
-  cursor: pointer;
+  border-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet) 1; /* Apply a linear gradient as the border */
   transition: background-color 0.3s; /* Smooth transition for hover effect */
 }
 
@@ -99,3 +100,45 @@ canvas {
   100% { opacity: 0; }
 }
 
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top, high value to surpass other elements */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity, dims the background */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%; /* Adjust width as per your design */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); /* Optional: Adds shadow for 3D effect */
+  animation: animatetop 0.4s; /* Animation to slide in the modal */
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@keyframes animatetop {
+  from {top: -300px; opacity: 0} 
+  to {top: 0; opacity: 1}
+}
