@@ -5,6 +5,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const height = canvas.height = 800;
     const cellSize = 40;
     const grid = [];
+    let obstacles = [
+        { x: 150, y: 150, width: 20, height: 20, dx: 0, dy: 0.2 }, // Uniform slow vertical movement
+        { x: 650, y: 150, width: 20, height: 20, dx: 0, dy: 0.2 }, // Uniform slow vertical movement
+        { x: 350, y: 350, width: 20, height: 20, dx: 0.2, dy: 0 }, // Uniform slow horizontal movement
+        { x: 450, y: 650, width: 20, height: 20, dx: 0.2, dy: 0 }  // Uniform slow horizontal movement
+    ];
+    
     let player = { x: 30, y: 30, width: 20, height: 20 }; // Adjust the initial position if needed
     let gameStarted = false;
     let timerInterval;
@@ -83,18 +90,106 @@ document.addEventListener('DOMContentLoaded', function() {
                 gameStarted = true;
             }
             const rect = canvas.getBoundingClientRect();
-            player.x = event.clientX - rect.left - player.width / 2;
-            player.y = event.clientY - rect.top - player.height / 2;
-            gameLoop();
+            const targetX = event.clientX - rect.left - player.width / 2;
+            const targetY = event.clientY - rect.top - player.height / 2;
+            
+            if (isValidMove(targetX, targetY)) {
+                player.x = targetX;
+                player.y = targetY;
+                gameLoop();
+            }
         });
+        function isValidMove(newX, newY) {
+            // Calculate grid cell coordinates
+            const cellX = Math.floor(newX / cellSize);
+            const cellY = Math.floor(newY / cellSize);
+        
+            // Log the coordinates to verify calculations
+        
+            // Boundary checks
+            if (cellX < 0 || cellX >= width / cellSize || cellY < 0 || cellY >= height / cellSize) {
+                return false;
+            }
+        
+            // Wall checks
+            const cell = grid[cellX][cellY];
+            if ((newX < cellX * cellSize && cell.walls[3]) || // Left wall
+                (newX + player.width > (cellX + 1) * cellSize && cell.walls[1]) || // Right wall
+                (newY < cellY * cellSize && cell.walls[0]) || // Top wall
+                (newY + player.height > (cellY + 1) * cellSize && cell.walls[2])) { // Bottom wall
+                return false;
+            }
+        
+            return true;
+        }
     function gameLoop() {
         requestAnimationFrame(gameLoop);
         drawMaze();
         drawPlayer();
         checkForEndPoint();
-        
+        moveObstacles();
+        drawObstacles();
+        checkCollisions();  // Check for collisions with obstacles.
+
+    }
+    function moveObstacles() {
+        obstacles.forEach(obstacle => {
+            const speed = .1; // Speed in pixels per frame
+            const maxSpeed = 0.2; // Maximum delta per frame (adjust as needed)
+    
+            // Calculate consistent speed regardless of direction
+            obstacle.dx = obstacle.dx > 0 ? maxSpeed : -maxSpeed;
+            obstacle.dy = obstacle.dy > 0 ? maxSpeed : -maxSpeed;
+    
+            // Update position
+            obstacle.x += obstacle.dx * speed;
+            obstacle.y += obstacle.dy * speed;
+    
+            // Reverse direction on hitting boundaries
+            if (obstacle.x <= 0 || obstacle.x + obstacle.width >= width) {
+                obstacle.dx = -obstacle.dx; // Reverse horizontal direction
+            }
+            if (obstacle.y <= 0 || obstacle.y + obstacle.height >= height) {
+                obstacle.dy = -obstacle.dy; // Reverse vertical direction
+            }
+        });
+    }
+    
+    function handleCollision() {
+        // Reset player to start position
+        resetPlayerPosition();  // Reset player to the starting position.
+        showAlert("You hit an obstacle! Starting over...");
+    }
+    function showAlert(message) {
+        alert(message);
     }
 
+    function checkCollisions() {
+        // Check for collision with any obstacle
+        obstacles.forEach(obstacle => {
+            if (player.x < obstacle.x + obstacle.width &&
+                player.x + player.width > obstacle.x &&
+                player.y < obstacle.y + obstacle.height &&
+                player.y + player.height > obstacle.y) {
+                handleCollision();  // Handle collision by resetting player position.
+            }
+        });
+    }
+    function initializeObstacles() {
+        obstacles = [
+            { x: 150, y: 150, width: 20, height: 20, dx: 0, dy: 0.2 }, // Initial position and movement.
+            { x: 650, y: 150, width: 20, height: 20, dx: 0, dy: 0.2 },
+            { x: 350, y: 350, width: 20, height: 20, dx: 0.2, dy: 0 },
+            { x: 450, y: 650, width: 20, height: 20, dx: 0.2, dy: 0 }
+        ];
+    }
+
+    function drawObstacles() {
+        ctx.fillStyle = 'red';
+        obstacles.forEach(obstacle => {
+            ctx.fillRect(obstacle.x, obstacle.y, obstacle.width, obstacle.height);
+        });
+    }
     function drawPlayer() {
         ctx.fillStyle = 'blue';
         ctx.fillRect(player.x, player.y, player.width, player.height);
@@ -110,10 +205,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function resetPlayerPosition() {
         // Reset player to the starting point
-        player.x = 30;
-        player.y = 30;
-        drawPlayer(); // Optionally redraw the player at the start position
-    }
+        player.x = 30;  // Set to starting x coordinate.
+    player.y = 30;  // Set to starting y coordinate.
+    drawPlayer();  // Redraw the player at the start position.
+}
     function showModal() {
         var modal = document.getElementById("myModal");
         var span = document.getElementsByClassName("close")[0];
@@ -130,24 +225,25 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
-    function resetGame(clearAll) {
-        clearInterval(timerInterval);
-        document.getElementById('timer').textContent = "00:00";
-        gameStarted = false; // Ensure gameStarted is reset
-    
-        if (clearAll) {
-            let btn = document.getElementById('celebrateButton');
-            if (btn) {
-                btn.parentNode.removeChild(btn); // Remove the celebrate button if it exists
-            }
+ function resetGame(clearAll) {
+    clearInterval(timerInterval); // Stop the timer.
+    document.getElementById('timer').textContent = "00:00"; // Reset the timer display.
+    gameStarted = false; // Reset the game start flag.
+
+    if (clearAll) {
+        let btn = document.getElementById('celebrateButton');
+        if (btn) {
+            btn.parentNode.removeChild(btn); // Remove the celebrate button if it exists.
         }
-    
-        initGrid();
-        player.x = 30;
-        player.y = 30;
-        drawMaze(); // Redraw the maze to reflect the reset
-        startTimer(); // Restart the timer
     }
+
+    initGrid(); // Reinitialize the grid for the maze.
+    initializeObstacles(); // Reinitialize the obstacles to their starting positions.
+    player.x = 30; // Reset player to the starting x coordinate.
+    player.y = 30; // Reset player to the starting y coordinate.
+    drawMaze(); // Redraw the entire maze.
+    startTimer(); // Restart the timer.
+}
 
     const restartButton = document.getElementById('restartBtn');
     if (restartButton) {
