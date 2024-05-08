@@ -36,12 +36,12 @@ h1 {
 }
 
 #maze {
-    width: 400px;
-    height: 400px;
-    border: 2px solid #000;
+    width: 600px; 
+    height: 600px; 
     display: grid;
-    grid-template-columns: repeat(10, 40px);
-    grid-template-rows: repeat(10, 40px);
+    grid-template-columns: repeat(15, 40px); 
+    grid-template-rows: repeat(15, 40px); 
+
     border-image: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet) 1; /* Apply a linear gradient as the border */
     box-shadow: 0 0 10px rgba(204, 80, 177, 0.5); /* Optional: shadow for some depth */
 }

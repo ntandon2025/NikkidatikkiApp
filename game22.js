@@ -2,30 +2,38 @@
 const maze = document.getElementById('maze');
 const moveCountSpan = document.getElementById('moveCount');
 const timeSpan = document.getElementById('time');
-let playerPosition = { x: 1, y: 1 }; // Set initial position to an open spot
+let playerPosition = { x: 1, y: 1 }; // Starting position
 let moveCount = 0;
 let timeLeft = 30;
 let gameTimer = null; // Ensure the timer is controlled
 let avoiders = [
-    { x: 8, y: 3, dx: 1, dy: 0, initialX: 8, initialY: 3 }, // Moves horizontally
-    { x: 8, y: 7, dx: 1, dy: 0, initialX: 8, initialY: 7 }  // Moves horizontally
+    { x: 12, y: 5, dx: 1, dy: 0, initialX: 12, initialY: 5 },
+    { x: 5, y: 11, dx: 1, dy: 0, initialX: 5, initialY: 11 },
+    { x: 14, y: 1, dx: 1, dy: 0, initialX: 14, initialY: 1 },
+    { x: 13, y: 11, dx: 1, dy: 0, initialX: 13, initialY: 11 },
+    { x: 3, y: 3, dx: 0, dy: -2, initialX: 3, initialY: 3 }
 ];
 
 
 
-
 const layout = [
-    '1111111111',
-    '1001001001',
-    '1011011011',
-    '1000000001',
-    '1111111101',
-    '1001001001',
-    '1011111001',
-    '1000000001',
-    '1111011111',
-    '1111011111'
+    '111111111111111',
+    '100000001000001',
+    '101111101011101',
+    '101000101010001',
+    '101011101010111',
+    '101010000000000',
+    '101011111111101',
+    '100010000000001',
+    '111010111110111',
+    '100010100010001',
+    '101110101011101',
+    '100000101000001',
+    '101111101011101',
+    '100000001000001',
+    '111111111111101'
 ].map(row => row.split(''));
+
 
 function drawMaze() {
     maze.innerHTML = '';
@@ -45,22 +53,30 @@ function drawMaze() {
         });
     });
 }
-
 function movePlayer(dx, dy) {
     const newX = playerPosition.x + dx;
     const newY = playerPosition.y + dy;
-    if (newX >= 0 && newX < 10 && newY >= 0 && newY < 10 && layout[newY][newX] === '0') {
+    console.log(`Attempting to move to: ${newX}, ${newY}`); // Debugging output
+
+    if (newX >= 0 && newX < layout[0].length && newY >= 0 && newY < layout.length && layout[newY][newX] === '0') {
         playerPosition.x = newX;
         playerPosition.y = newY;
-        checkCollisionWithAvoiders();  // Check for collision after moving
         drawMaze();
+        checkCollisionWithAvoiders();  // Check for collision after moving
         moveCount++;
         moveCountSpan.textContent = moveCount;
-        if (newX === 4 && newY === 9) {  // Assuming this is your goal position
-            goToGame22Page();
+        console.log(`Moved to: ${newX}, ${newY}`); // Confirm movement
+
+        if (newX === 13 && newY === 14) {  // Verify endpoint coordinates
+            console.log("Endpoint reached, redirecting...");
+            goToGame23Page();
         }
+    } else {
+        console.log("Move blocked by a wall or out of bounds.");
     }
 }
+
+
 function resetPlayer() {
     playerPosition = { x: 1, y: 1 }; // Reset to start position
     moveCount = 0;
@@ -71,17 +87,28 @@ function resetPlayer() {
 function moveAvoiders() {
     avoiders.forEach(avoider => {
         const newX = avoider.x + avoider.dx;
-        if (newX >= 0 && newX < layout[0].length && layout[avoider.y][newX] === '0') {
+        const newY = avoider.y + avoider.dy;
+
+        if (newX >= 0 && newX < layout[0].length && newY >= 0 && newY < layout.length && layout[newY][newX] === '0') {
             avoider.x = newX;
+            avoider.y = newY;
         } else {
-            avoider.dx *= -1; // Change direction on collision with wall
+            if (avoider.dx !== 0) { // If moving horizontally, reverse horizontal direction
+                avoider.dx *= -1;
+            }
+            if (avoider.dy !== 0) { // If moving vertically, reverse vertical direction
+                avoider.dy *= -1;
+            }
         }
+
         // Check for collision with the player right after moving each avoider
         if (avoider.x === playerPosition.x && avoider.y === playerPosition.y) {
-            resetPlayer();
+            resetPlayer(); // Reset player to start position if collision occurs
         }
     });
 }
+
+
 function checkCollisionWithAvoiders() {
     avoiders.forEach(avoider => {
         if (avoider.x === playerPosition.x && avoider.y === playerPosition.y) {
@@ -90,11 +117,13 @@ function checkCollisionWithAvoiders() {
     });
 }
 
-function goToGame22Page() {
-    window.location.href = 'game22.html'; // Redirect to another page when "X" is reached
+function goToGame23Page() {
+    console.log("Redirecting to game23.html");
+    window.location.href = 'game23.html'; // Check if this URL is correct and accessible
 }
 
 document.addEventListener('keydown', (event) => {
+    console.log(event.key);  // Check which key is pressed
     switch (event.key) {
         case 'ArrowUp': movePlayer(0, -1); break;
         case 'ArrowDown': movePlayer(0, 1); break;
@@ -126,17 +155,17 @@ function resetGame() {
     timeLeft = 30;
     moveCountSpan.textContent = moveCount;
     timeSpan.textContent = timeLeft;
-    playerPosition = { x: 1, y: 1 }; // Reset player position
+    playerPosition = { x: 1, y: 1 };
 
     // Reset avoiders to their initial positions
     avoiders.forEach(avoider => {
         avoider.x = avoider.initialX;
         avoider.y = avoider.initialY;
-        avoider.dx = Math.abs(avoider.dx); // Reset direction if you want to ensure it starts the same way each time
     });
 
     drawMaze();
 }
+
 
 function gameOver() {
     alert('Game Over! Time up or stopped.');
