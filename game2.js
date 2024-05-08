@@ -43,7 +43,15 @@ function movePlayer(dx, dy) {
         drawMaze();
         moveCount++;
         moveCountSpan.textContent = moveCount;
+        // Check if the player has reached the "X" marked square
+        if (newX === 4 && newY === 9) {
+            goToGame22Page();
+        }
     }
+}
+
+function goToGame22Page() {
+    window.location.href = 'game22.html'; // Redirect to another page when "X" is reached
 }
 
 document.addEventListener('keydown', (event) => {
@@ -88,7 +96,7 @@ function gameOver() {
 }
 
 function goToHomePage() {
-    window.location.href = 'home.nhtml'; // Correct homepage URL
+    window.location.href = 'home.html'; // Correct homepage URL
 }
 
 window.onload = resetGame; // Set up the game without starting
