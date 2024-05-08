@@ -131,12 +131,20 @@ function checkCollisionWithAvoiders() {
 
 function goToGame23Page() {
     console.log("Endpoint reached, starting confetti...");
-    startConfetti();
+    confetti(); // Change startConfetti() to confetti()
     document.querySelector('.game-message').style.display = 'block'; // Show the message
     setTimeout(function() {
         goToHomePage(); // Provide a delay before redirecting to homepage
     }, 5000);
 }
+function startConfetti() {
+    confetti({
+        particleCount: 1200,
+        spread: 600,
+        origin: { y: 0.6 }
+    });
+}
+
 
 document.addEventListener('keydown', (event) => {
     console.log(event.key);  // Check which key is pressed
@@ -168,7 +176,7 @@ function stopTimer() {
 function resetGame() {
     stopTimer();
     moveCount = 0;
-    timeLeft = 90;
+    timeLeft = 65;
     moveCountSpan.textContent = moveCount;
     timeSpan.textContent = timeLeft;
     playerPosition = { x: 1, y: 1 };
