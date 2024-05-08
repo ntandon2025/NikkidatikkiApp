@@ -133,6 +133,7 @@ document.addEventListener('keydown', (event) => {
 });
 function startGame() {
     if (gameTimer !== null) return;
+    resetGame(); // Reset the game to its initial state
     gameTimer = setInterval(() => {
         timeLeft--;
         timeSpan.textContent = timeLeft;
@@ -142,7 +143,6 @@ function startGame() {
             gameOver();
         }
     }, 1000);
-    drawMaze(); // Initial draw
 }
 function stopTimer() {
     clearInterval(gameTimer);
