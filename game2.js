@@ -85,6 +85,8 @@ function moveAvoiders() {
         }
         // Check for collision with the player right after moving each avoider
         if (avoider.x === playerPosition.x && avoider.y === playerPosition.y) {
+            playCollisionSound(); // Play the sound if there's a collision
+
             resetPlayer();
         }
     });
@@ -92,9 +94,15 @@ function moveAvoiders() {
 function checkCollisionWithAvoiders() {
     avoiders.forEach(avoider => {
         if (avoider.x === playerPosition.x && avoider.y === playerPosition.y) {
+            playCollisionSound();  // Play the collision sound
             resetPlayer();  // Reset player to start position if collision occurs
         }
     });
+}
+function playCollisionSound() {
+    const sound = document.getElementById('collisionSound');
+    sound.currentTime = 0; // Rewind to the start if it was already playing
+    sound.play();
 }
 
 function goToGame22Page() {
