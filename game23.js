@@ -77,6 +77,8 @@ function movePlayer(dx, dy) {
         checkCollisionWithAvoiders();  // Check for collision after moving
         moveCount++;
         moveCountSpan.textContent = moveCount;
+        playMoveSound();  // Play the sound on move
+
         console.log(`Moved to: ${newX}, ${newY}`); // Confirm movement
 
         if (newX === 18 && newY === 13) {  // Verify endpoint coordinates
@@ -86,6 +88,11 @@ function movePlayer(dx, dy) {
     } else {
         console.log("Move blocked by a wall or out of bounds.");
     }
+}
+function playMoveSound() {
+    const sound = document.getElementById('moveSound');
+    sound.currentTime = 0; // Rewind to the start if it was already playing
+    sound.play();
 }
 
 

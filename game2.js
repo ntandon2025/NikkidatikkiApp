@@ -56,10 +56,17 @@ function movePlayer(dx, dy) {
         drawMaze();
         moveCount++;
         moveCountSpan.textContent = moveCount;
+        playMoveSound();  // Play the sound on move
         if (newX === 4 && newY === 9) {  // Assuming this is your goal position
             goToGame22Page();
         }
     }
+}
+
+function playMoveSound() {
+    const sound = document.getElementById('moveSound');
+    sound.currentTime = 0; // Rewind to the start if it was already playing
+    sound.play();
 }
 function resetPlayer() {
     playerPosition = { x: 1, y: 1 }; // Reset to start position
@@ -149,3 +156,10 @@ function goToHomePage() {
 
 window.onload = resetGame; // Set up the game without starting
 
+function showInstructions() {
+    document.getElementById('instructionsBox').style.display = 'block';
+}
+
+function closeInstructions() {
+    document.getElementById('instructionsBox').style.display = 'none';
+}

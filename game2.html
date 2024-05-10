@@ -11,16 +11,25 @@
     <img id="profileIcon" src="discoraccoon.png" alt="Profile Icon" /> <!-- Update path to icon -->
     <span id="gamertag">Player's Gamertag</span> <!-- Placeholder for gamertag -->
 </div>
-<h1>Maze Game</h1>
+<audio id="moveSound" src="521550__omerbhatti34__laser-fire.mp3" preload="auto"></audio>
+
+<h1>Levle 1</h1>
 <div id="gameContainer">
     <div id="maze"></div>
     <div id="panel">
         <button onclick="startGame()">Start Game</button>
         <button onclick="stopTimer()">Stop Timer</button>
         <button onclick="resetGame()">Restart Game</button>
+        <button onclick="showInstructions()">Instructions</button> <!-- Instructions Button -->
+
         <button onclick="goToHomePage()">Go Home</button>
         <p id="timer">Time Left: <span id="time">30</span> seconds</p>
         <p id="moves">Moves: <span id="moveCount">0</span></p>
+    </div>
+    <div id="instructionsBox" style="display: none;">
+        <h2>How to Play</h2>
+        <p>Use the arrow keys to navigate through the maze from the start and you need to find the  to the end point. Avoid the moving obstacles, and try to reach the end before the time runs out. Press 'Start Game' to begin your adventure!</p>
+        <button onclick="closeInstructions()">Close</button>
     </div>
 </div>
 <script src="game2.js"></script>
