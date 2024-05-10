@@ -10,60 +10,77 @@
     <link rel="stylesheet" href="styles.css">
 
     <style>
-        body {
+        body, html {
             margin: 0;
             padding: 0;
+            height: 100%; /* Full height to allow flex to work correctly */
             font-family: 'Creepster', cursive;
-            background: #000;
             color: #fff;
-            overflow-x: hidden;
-        }
-
-        .leaderboard-section {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 1px; /* Reduced from a larger value to bring it closer */
-            margin-top: -300px; /* Adjusted to bring the leaderboard closer to the navigation bar */
+            flex-direction: column; /* Stack header, main, and footer */
+            overflow-x: hidden; /* Prevent horizontal overflow at the page level */
         }
-
-        .leaderboard-container {
-            max-width: 90%;
-            margin: 1em auto; /* Adjusted to unify styling */
-            padding: 1em;
+    
+        header {
+            /* Adjust as needed */
+        }
+    
+        main {
+            flex: 1; /* Takes all available space between header and footer */
+            display: flex;
+            justify-content: center; /* Center content horizontally */
+            align-items: center; /* Center content vertically */
+            overflow-x: auto; /* Enable horizontal scrolling for the leaderboard sections */
+            padding: 20px; /* Provide some padding around the content */
+            box-sizing: border-box; /* Include padding in the height calculation */
+        }
+    
+        .scrolling-container {
+            display: flex;
+            width: 100%; /* Ensure the container spans the full width of main */
+        }
+    
+        .leaderboard-section {
+            flex: 0 0 auto; /* Do not grow or shrink, retain the width specified */
+            width: 600px; /* Fixed width for each section */
+            margin: 10px; /* Space between sections */
             border-radius: 10px;
-            background: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-            text-align: center;
-            font-size: 1.8em;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+            font-size: 1.5em;
+            padding: 20px;
             background-image: linear-gradient(45deg, #ff0099, #493240, #0bfcff);
-            background-size: 200% 200%;
             animation: gradientAnimation 4s ease infinite;
+            color: white;
+            box-sizing: border-box; /* Include padding and border in the width */
         }
-
+    
         .leaderboard-table {
             width: 100%;
             border-collapse: collapse;
         }
-
+    
         .leaderboard-table th, .leaderboard-table td {
             padding: 1em;
-            border-bottom: 2px solid #000000;
-            background-color: #000000;
-            color: #ecf0f1;
+            border-bottom: 2px solid #000;
+            text-align: center;
         }
-
+    
         .leaderboard-table img {
             height: 30px;
             width: 30px;
             border-radius: 50%;
-            background-color: #ecf0f1;
         }
-
+    
         .leaderboard-table tr:nth-child(even) td {
             background-color: #000000;
         }
+    
+        footer {
+            /* Adjust as needed */
+        }
     </style>
+    
+    
 </head>
 <body>
     <header class="disco-theme2">
@@ -84,9 +101,11 @@
         <!-- Leaderboard Section -->
         <section class="leaderboard-section">
             <div class="leaderboard-container">
-                <!-- This table will hold the leaderboard data -->
                 <table class="leaderboard-table">
                     <thead>
+                        <tr>
+                            <th colspan="4">Game 1</th>
+                        </tr>
                         <tr>
                             <th>Rank</th>
                             <th>Gamertag</th>
@@ -95,76 +114,191 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Leaderboard entries will be inserted here -->
-                        <!-- Static example entry -->
                         <tr>
                             <td>1</td>
                             <td>PlayerOne</td>
-                            <td><img src="playericon.png" alt="Player Icon" /></td>
-                            <td>00:02:34</td>
+                            <td><img src="discoball.png" alt="Player Icon" /></td>
+                            <td>02:34</td>
                         </tr>
-                        <!-- Repeat the above row for each entry -->
+                        <tr>
+                            <td>2</td>
+                            <td>Gamer124</td>
+                            <td><img src="discobear.png" alt="Player Icon" /></td>
+                            <td>03:00</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>RaceWin638</td>
+                            <td><img src="discobird2.png" alt="Player Icon" /></td>
+                            <td>03:15</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>FastRun999</td>
+                            <td><img src="discodeer.png" alt="Player Icon" /></td>
+                            <td>03:45</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>QuickFox856</td>
+                            <td><img src="discoflamingo.png" alt="Player Icon" /></td>
+                            <td>04:05</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>NightSky675</td>
+                            <td><img src="discootter.png" alt="Player Icon" /></td>
+                            <td>04:30</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>ShadowFly303</td>
+                            <td><img src="discogiraffe.png" alt="Player Icon" /></td>
+                            <td>05:00</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>SpeedStar404</td>
+                            <td><img src="discoraccoon.png" alt="Player Icon" /></td>
+                            <td>05:25</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>SilverRace007</td>
+                            <td><img src="discominitiger.png" alt="Player Icon" /></td>
+                            <td>05:50</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
         </section>
-    </main>
+
+  <!-- Leaderboard Section for Game 2 -->
+  <section class="leaderboard-section">
+    <div class="leaderboard-container">
+        <table class="leaderboard-table">
+                <thead>
+                    <tr>
+                        <th colspan="4">Game 2</th>
+                    </tr>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Gamertag</th>
+                        <th>Icon</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>PixelRacer324</td>
+                        <td><img src="discowolf.png" alt="Player Icon" /></td>
+                        <td>30.00</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>QuantumLeap546</td>
+                        <td><img src="discocat.png" alt="Player Icon" /></td>
+                        <td>31.20</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>VortexMaster752</td>
+                        <td><img src="discobear.png" alt="Player Icon" /></td>
+                        <td>32.45</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>BlazeRunner34</td>
+                        <td><img src="discobird.png" alt="Player Icon" /></td>
+                        <td>34.10</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>ShadowStriker23</td>
+                        <td><img src="discootter.png" alt="Player Icon" /></td>
+                        <td>35.30</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>GlitchWizard444</td>
+                        <td><img src="discoporc.png" alt="Player Icon" /></td>
+                        <td>36.50</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>PhantomRush796</td>
+                        <td><img src="discoraccoon.png" alt="Player Icon" /></td>
+                        <td>38.25</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>CyberTrail160</td>
+                        <td><img src="discobird3.png" alt="Player Icon" /></td>
+                        <td>39.05</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>NovaDrive29</td>
+                        <td><img src="discodeer.png" alt="Player Icon" /></td>
+                        <td>39.50</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
   
+<div class="starlight-background">
+    <!-- Stars will be generated by JavaScript -->
+</div>
 
-    <div class="starlight-background">
-        <!-- Stars will be generated by JavaScript -->
-    </div>
+<footer>
+    <p>&copy; 2024 Gaming Website</p>
+    <div class="back-arrow" onclick="window.history.back();">← Go Back</div>
+</footer>
 
-    <footer>
-        <p>&copy; 2024 Gaming Website</p>
-        <div class="back-arrow" onclick="window.history.back();">← Go Back</div>
-    </footer>
+<script src="script.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const starlightBackground = document.querySelector('.starlight-background');
+        if (!starlightBackground) {
+            console.warn('Starlight background not found!');
+            return;
+        }
 
-    <script src="script.js"></script>
-</body>
-</html>
+        const stars = 100; // Number of stars
+        const colors = ['red', 'blue', 'green', 'yellow', 'pink', 'purple', 'orange'];
 
-    <script>
-       document.addEventListener("DOMContentLoaded", function() {
-    // Star generation
-    const starlightBackground = document.querySelector('.starlight-background');
-    const stars = 100; // Number of stars
-    const colors = ['red', 'blue', 'green', 'yellow', 'pink', 'purple', 'orange']; // Disco colors
+        for (let i = 0; i < stars; i++) {
+            let star = document.createElement('div');
+            star.className = 'star';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.left = Math.random() * 100 + '%';
 
-    for (let i = 0; i < stars; i++) {
-        let star = document.createElement('div');
-        star.className = 'star';
-        star.style.top = Math.random() * 100 + '%';
-        star.style.left = Math.random() * 100 + '%';
+            let colorIndex = Math.floor(Math.random() * colors.length);
+            star.style.backgroundColor = colors[colorIndex];
 
-        let colorIndex = Math.floor(Math.random() * colors.length);
-        star.style.backgroundColor = colors[colorIndex];
+            let duration = Math.random() * (1.5 - 0.5) + 0.5; // Twinkling effect
+            star.style.animation = `twinkle ${duration}s infinite ease-in-out`;
 
-        // Random duration for twinkling
-        let duration = Math.random() * (1.5 - 0.5) + 0.5; // Duration between 0.5s and 1.5s
-        star.style.animation = `twinkle ${duration}s infinite ease-in-out`;
+            starlightBackground.appendChild(star);
+        }
 
-        starlightBackground.appendChild(star);
-    }
+        document.addEventListener("mousemove", function(e) {
+            const stars = document.querySelectorAll('.star');
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
 
-    // Mouse Movement Effect
-    document.addEventListener("mousemove", function(e) {
-        const stars = document.querySelectorAll('.star');
-        const mouseX = e.clientX;
-        const mouseY = e.clientY;
+            stars.forEach(function(star, index) {
+                const speed = index / stars.length;
+                const x = (mouseX - window.innerWidth / 2) * speed / 100;
+                const y = (mouseY - window.innerHeight / 2) * speed / 100;
 
-        stars.forEach(function(star, index) {
-            const speed = index / stars.length;
-            const x = (mouseX - window.innerWidth / 2) * speed / 100;
-            const y = (mouseY - window.innerHeight / 2) * speed / 100;
-
-            star.style.transform = `translate(${x}px, ${y}px)`;
+                star.style.transform = `translate(${x}px, ${y}px)`;
+            });
         });
     });
-});
-
-         
-    </script>
-    
+</script>
 </body>
 </html>
