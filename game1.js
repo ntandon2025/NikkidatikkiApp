@@ -130,6 +130,8 @@ document.addEventListener('DOMContentLoaded', function() {
         moveObstacles();
         drawObstacles();
         checkCollisions();  // Check for collisions with obstacles.
+                document.getElementById('gameMusic').pause(); // Stop the music
+
 
     }
     function moveObstacles() {
