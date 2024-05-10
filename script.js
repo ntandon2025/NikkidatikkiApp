@@ -27,3 +27,17 @@ function togglePasswordVisibility() {
         event.target.textContent = 'Show';
     }
 }
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting through the browser
+
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Here, you would normally validate the credentials
+    // For now, just redirect if any non-empty username and password are entered
+    if(username && password) {
+        window.location.href = 'welcome.html'; // Redirect to a new page upon successful login
+    } else {
+        alert('Please enter both username and password.');
+    }
+});

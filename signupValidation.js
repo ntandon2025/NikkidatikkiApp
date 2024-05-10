@@ -8,12 +8,19 @@ document.addEventListener("DOMContentLoaded", function() {
     const signupForm = document.getElementById('signupForm');
     const continueButton = document.getElementById('continueButton');
     const toggleButton = document.getElementById('togglePassword');
+    const showCriteriaButton = document.getElementById('showCriteriaButton');
+    const criteriaInfo = document.getElementById('criteriaInfo');
 
     // Toggle password visibility
     toggleButton.addEventListener('click', function() {
-        let isPasswordShown = password.type === 'password';
+        const isPasswordShown = password.type === 'password';
         password.type = confirmPassword.type = isPasswordShown ? 'text' : 'password';
         toggleButton.textContent = isPasswordShown ? 'Hide' : 'Show';
+    });
+
+    // Show/Hide criteria popup
+    showCriteriaButton.addEventListener('click', function() {
+        criteriaInfo.style.display = criteriaInfo.style.display === 'block' ? 'none' : 'block';
     });
 
     // Validation functions
@@ -43,51 +50,44 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function updateButtonStyle() {
         if (validateGamertag() && validatePassword() && validateConfirmPassword()) {
-            continueButton.style.backgroundColor = "green"; // Set button color to green
-            continueButton.disabled = false; // Enable the button if all validations pass
+            continueButton.style.backgroundColor = "green";
+            continueButton.disabled = false;
         } else {
-            continueButton.style.backgroundColor = ""; // Reset to default
-            continueButton.disabled = true; // Disable the button if validation fails
+            continueButton.style.backgroundColor = "";
+            continueButton.disabled = true;
         }
     }
 
-    // Real-time validation
     gamertag.addEventListener('input', updateButtonStyle);
     password.addEventListener('input', updateButtonStyle);
     confirmPassword.addEventListener('input', updateButtonStyle);
 
-    // Form submission handling
+    // Handle form submission
     signupForm.addEventListener('submit', function(event) {
         event.preventDefault();
-        if (validateGamertag() && validatePassword() && validateConfirmPassword() && !continueButton.disabled) {
-            // Assuming you have a server endpoint set up correctly
-            fetch('/.netlify/functions/create-account', {
-                method: 'POST',
-                body: JSON.stringify({
-                    gamertag: gamertag.value,
-                    password: password.value // Ensure passwords are hashed on the server
-                }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Success:', data);
-                window.location.href = 'iconcreationpage.html'; // Redirect on success
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
+        if (validateGamertag() && validatePassword() && validateConfirmPassword()) {
+            // Redirect to icon creation page
+            window.location.href = 'iconcreationpage.html';
         } else {
             console.error('Validation failed.');
-            continueButton.style.backgroundColor = ""; // Reset to default
-            continueButton.disabled = true; // Keep the button disabled if not valid
         }
+    });
+});
+document.addEventListener("DOMContentLoaded", function() {
+    const continueButton = document.getElementById('continueButton');
+    const gamertag = document.getElementById('gamertag');
+    const password = document.getElementById('password');
+    const iconSelect = document.getElementById('iconSelect'); // Ensure this is the dropdown or input field for selecting an icon
+
+    continueButton.addEventListener('click', function() {
+        const userGamertag = gamertag.value;
+        const userPassword = password.value; // Storing password just for the transition, this should be handled securely
+        const userIcon = iconSelect.value;
+        
+        localStorage.setItem('gamertag', userGamertag);
+        localStorage.setItem('password', userPassword); // Consider security implications
+        localStorage.setItem('icon', userIcon);
+
+        window.location.href = 'accountConfirmation.html'; // Redirect to the confirmation page
     });
 });
