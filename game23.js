@@ -84,6 +84,8 @@ function movePlayer(dx, dy) {
         if (newX === 18 && newY === 13) {  // Verify endpoint coordinates
             console.log("Endpoint reached, redirecting...");
             goToGame23Page();
+            resetPlayer()
+            resetGame()
         }
     } else {
         console.log("Move blocked by a wall or out of bounds.");
@@ -95,6 +97,9 @@ function playMoveSound() {
     sound.play();
 }
 
+function closeMessage() {
+    document.querySelector('.game-message').style.display = 'none';  // Hide the message box
+}
 
 function resetPlayer() {
     playerPosition = { x: 1, y: 1 }; // Reset to start position
@@ -144,21 +149,17 @@ function playCollisionSound() {
 }
 
 function goToGame23Page() {
-    console.log("Endpoint reached, starting confetti...");
-    confetti(); // Change startConfetti() to confetti()
-    document.querySelector('.game-message').style.display = 'block'; // Show the message
-    setTimeout(function() {
-        goToHomePage(); // Provide a delay before redirecting to homepage
-    }, 5000);
+    console.log("Endpoint reached, displaying celebration option...");
+    document.querySelector('.game-message').style.display = 'block'; // Show the game message with the Celebrate button
 }
 function startConfetti() {
+    console.log('Confetti button clicked');
     confetti({
-        particleCount: 1200,
-        spread: 600,
+        particleCount: 100,
+        spread: 70,
         origin: { y: 0.6 }
     });
 }
-
 
 document.addEventListener('keydown', (event) => {
     console.log(event.key);  // Check which key is pressed

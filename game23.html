@@ -6,7 +6,6 @@
 <title>Level 3  Maze Game 2</title>
 <link rel="stylesheet" href="game23.css">
 </head>
-<script src="https://cdn.jsdelivr.net/npm/@canvas-confetti/browser.min.js"></script>
 
 <body>
 <div id="header">
@@ -19,7 +18,8 @@
 
 <h1>Level 3</h1>
 <div id="gameContainer">
-    <div id="maze"></div>
+    <div id="maze"></div>    
+
     <div id="panel">
         <button onclick="startGame()">Start Game</button>
         <button onclick="stopTimer()">Stop Timer</button>
@@ -28,13 +28,17 @@
         <p id="timer">Time Left: <span id="time">30</span> seconds</p>
         <p id="moves">Moves: <span id="moveCount">0</span></p>
     </div>
-</div>
-<p class="game-message" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 24px; color: white; display: none;">
-    Congratulations! You have completed all the levels for game 2. Click the home icon to go back to the homepage.
-</p>
-</div>
+    <div class="game-message" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border: 2px solid black; z-index: 100;">
+        Congratulations! You have completed all the levels for game 2. Click on the CELEBRATE button!.
+                <button onclick="startConfetti()">Celebrate</button>
+                <button onclick="closeMessage()">Close</button>
+
+    </div>
 </div>
 <script src="game23.js"></script>
+<script src="
+https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js
+"></script>
 
 
 
