@@ -92,23 +92,35 @@ document.addEventListener('DOMContentLoaded', function() {
             const rect = canvas.getBoundingClientRect();
             const targetX = event.clientX - rect.left - player.width / 2;
             const targetY = event.clientY - rect.top - player.height / 2;
-            
-            if (isValidMove(targetX, targetY)) {
+        
+            // Check if the intended movement is valid
+            if (isValidMove(targetX, targetY) && !isCollidingWithObstacle(targetX, targetY)) {
                 player.x = targetX;
                 player.y = targetY;
                 gameLoop();
             }
         });
+        function isCollidingWithObstacle(x, y) {
+            for (let i = 0; i < obstacles.length; i++) {
+                const obstacle = obstacles[i];
+                if (x < obstacle.x + obstacle.width &&
+                    x + player.width > obstacle.x &&
+                    y < obstacle.y + obstacle.height &&
+                    y + player.height > obstacle.y) {
+                    return true; // Collision detected
+                }
+            }
+            return false; // No collision detected
+        }
         function isValidMove(newX, newY) {
             // Calculate grid cell coordinates
             const cellX = Math.floor(newX / cellSize);
             const cellY = Math.floor(newY / cellSize);
         
-            // Log the coordinates to verify calculations
-        
             // Boundary checks
-            if (cellX < 0 || cellX >= width / cellSize || cellY < 0 || cellY >= height / cellSize) {
-                return false;
+            if (newX < 0 || newX >= width - player.width || 
+                newY < 0 || newY >= height - player.height) {
+                return false; // Movement outside canvas boundaries
             }
         
             // Wall checks
@@ -117,10 +129,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 (newX + player.width > (cellX + 1) * cellSize && cell.walls[1]) || // Right wall
                 (newY < cellY * cellSize && cell.walls[0]) || // Top wall
                 (newY + player.height > (cellY + 1) * cellSize && cell.walls[2])) { // Bottom wall
-                return false;
+                return false; // Movement intersects with wall
             }
         
-            return true;
+            return true; // Valid movement
         }
     function gameLoop() {
         requestAnimationFrame(gameLoop);
@@ -130,8 +142,6 @@ document.addEventListener('DOMContentLoaded', function() {
         moveObstacles();
         drawObstacles();
         checkCollisions();  // Check for collisions with obstacles.
-                document.getElementById('gameMusic').pause(); // Stop the music
-
 
     }
     function moveObstacles() {
