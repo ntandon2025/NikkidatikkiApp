@@ -176,7 +176,7 @@ function stopTimer() {
 function resetGame() {
     stopTimer();
     moveCount = 0;
-    timeLeft = 65;
+    timeLeft = 60;
     moveCountSpan.textContent = moveCount;
     timeSpan.textContent = timeLeft;
     playerPosition = { x: 1, y: 1 };
