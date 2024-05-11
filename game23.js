@@ -31,8 +31,8 @@ const layout = [
     '11101111111111101111',//5
     '10001000000000000001',//6
     '10111011111111111101',//7
-    '10100010000000100001',//8
-    '11101110111110101111',//9
+    '10000010000000100001',//8
+    '10111110111110101111',//9
     '10000000100010100001',//10
     '10111110101110111101',//11
     '10100000101000100001',//12
@@ -151,6 +151,8 @@ function playCollisionSound() {
 function goToGame23Page() {
     console.log("Endpoint reached, displaying celebration option...");
     document.querySelector('.game-message').style.display = 'block'; // Show the game message with the Celebrate button
+    const victorySound = document.getElementById('victorySound'); // Ensure you have this sound element in HTML
+    victorySound.play();
 }
 function startConfetti() {
     console.log('Confetti button clicked');

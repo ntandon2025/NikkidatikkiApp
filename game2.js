@@ -106,8 +106,11 @@ function playCollisionSound() {
 }
 
 function goToGame22Page() {
-    window.location.href = 'game22.html'; // Redirect to another page when "X" is reached
-}
+    const victorySound = document.getElementById('victorySound'); // Ensure you have this sound element in HTML
+    victorySound.play();
+    victorySound.onended = function() {
+        window.location.href = 'game22.html'; // Redirect to the next game page after the sound finishes playing
+    };}
 
 document.addEventListener('keydown', (event) => {
     switch (event.key) {

@@ -132,9 +132,12 @@ function playCollisionSound() {
 }
 
 function goToGame23Page() {
-    console.log("Redirecting to game23.html");
-    window.location.href = 'game23.html'; // Check if this URL is correct and accessible
-}
+    const victorySound = document.getElementById('victorySound'); // Ensure you have this sound element in HTML
+    victorySound.play();
+    victorySound.onended = function() {
+        window.location.href = 'game23.html'; // Redirect to the next game page after the sound finishes playing
+    };}
+
 
 document.addEventListener('keydown', (event) => {
     console.log(event.key);  // Check which key is pressed
