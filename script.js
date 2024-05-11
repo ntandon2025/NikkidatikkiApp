@@ -36,7 +36,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     // Here, you would normally validate the credentials
     // For now, just redirect if any non-empty username and password are entered
     if(username && password) {
-        window.location.href = 'welcome.html'; // Redirect to a new page upon successful login
+        window.location.href = 'home.html'; // Redirect to a new page upon successful login
     } else {
         alert('Please enter both username and password.');
     }
